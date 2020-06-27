@@ -47,6 +47,177 @@ $(() =>
 			}
 
 		},
+		saranData:
+		{
+
+			detail(id)
+			{
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>saran/data/getDataDetail',
+					data:
+					{
+						id: id
+					}
+				})
+			},
+
+			insert(penyakit, judul, keterangan) 
+			{
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>saran/data/insert',
+					data: 
+					{
+						penyakit: penyakit,
+						judul: judul,
+						keterangan: keterangan
+					}
+				})
+			},
+
+			update(id, penyakit, judul, keterangan) 
+			{
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>saran/data/update',
+					data: 
+					{
+						id: id,
+						penyakit: penyakit,
+						judul: judul,
+						keterangan: keterangan
+					}
+				})
+			},
+
+			delete(id) 
+			{
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>saran/data/delete',
+					data: 
+					{
+						id: id
+					}
+				})
+			},
+
+		},
+		gejalaData:
+		{
+
+			detail(id)
+			{
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>gejala/data/getDataDetail',
+					data:
+					{
+						id: id
+					}
+				})
+			},
+
+			insert(penyakit, nama, nilai) 
+			{
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>gejala/data/insert',
+					data: 
+					{
+						penyakit: penyakit,
+						nama: nama,
+						nilai: nilai
+					}
+				})
+			},
+
+			update(id, penyakit, nama, nilai) 
+			{
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>gejala/data/update',
+					data: 
+					{
+						id: id,
+						penyakit: penyakit,
+						nama: nama,
+						nilai: nilai
+					}
+				})
+			},
+
+			delete(id) 
+			{
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>gejala/data/delete',
+					data: 
+					{
+						id: id
+					}
+				})
+			},
+
+		},
+		penyakitData:
+		{
+
+			detail(id)
+			{
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>penyakit/data/getDataDetail',
+					data:
+					{
+						id: id
+					}
+				})
+			},
+
+			insert(nama, min, max) 
+			{
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>penyakit/data/insert',
+					data: 
+					{
+						nama: nama,
+						min: min,
+						max: max
+					}
+				})
+			},
+
+			update(id, nama, min, max) 
+			{
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>penyakit/data/update',
+					data: 
+					{
+						id: id,
+						nama: nama,
+						min: min,
+						max: max
+					}
+				})
+			},
+
+			delete(id) 
+			{
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>penyakit/data/delete',
+					data: 
+					{
+						id: id
+					}
+				})
+			},
+
+		},
 		pengaturanLevel: 
 		{
 

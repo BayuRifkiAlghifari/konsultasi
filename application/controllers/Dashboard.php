@@ -20,10 +20,6 @@ class Dashboard extends Render_Controller {
 		// Breadcrumb setting
 		$this->breadcrumb_1 			= 'Dashboard';
 		$this->breadcrumb_1_url 		= base_url() . 'dashboard';
-		$this->breadcrumb_2 			= 'Pengaturan';
-		$this->breadcrumb_2_url 		= '#';
-		$this->breadcrumb_3 			= 'Hak Akses';
-		$this->breadcrumb_3_url 		= '#';
 
 		// Send data to view
 
