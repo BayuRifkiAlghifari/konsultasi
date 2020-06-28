@@ -20,7 +20,7 @@ $config['app_name'] 		= 'Konsultasi Kesehatan';
 |
 */
 
-$config['copyright'] 		= '';
+$config['copyright'] 		= 'Konsultasi Kesehatan 2020';
 
 /*
 |--------------------------------------------------------------------------

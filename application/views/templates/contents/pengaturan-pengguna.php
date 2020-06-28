@@ -173,8 +173,8 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label for="tanggal">Username</label>
-								<input type="text" id="username" class="form-control" name="username" placeholder="Username" required />
+								<label for="tanggal">Email</label>
+								<input type="email" id="username" class="form-control" name="username" placeholder="Email" required />
 							</div>
 						</div>
 					</div>
