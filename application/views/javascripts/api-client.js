@@ -47,6 +47,23 @@ $(() =>
 			}
 
 		},
+		chat:
+		{
+
+			submitUser(doc, message)
+			{
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>chat/send_message_user',
+					data:
+					{
+						doc: doc,
+						message: message
+					}
+				})
+			}
+
+		},
 		saranData:
 		{
 
