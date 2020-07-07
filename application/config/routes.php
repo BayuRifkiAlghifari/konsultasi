@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -51,7 +51,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 */
 $route['default_controller'] = 'login';
 $route['404_override'] = 'my404';
-$route['langganan/(:any)'] = 'langganan/index/$1';
 $route['translate_uri_dashes'] = TRUE;
 
 $route['javascripts/(:any).js'] = 'loader/javascripts/$1';

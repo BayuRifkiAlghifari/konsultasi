@@ -1,8 +1,7 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends Render_Controller
-{
+class Login extends Render_Controller {
 
 	public function index()
 	{
@@ -23,27 +22,33 @@ class Login extends Render_Controller
 		$password 	= $this->input->post('password');
 
 		// Cek login ke model
-		$login 		= $this->login->cekLogin($username, $password);
+		$login 		= $this->login->cekLogin($username,$password);
 
-
-		if ($login['status'] == 0) {
+		
+		if($login['status'] == 0)
+		{
 			// Set session value
 			$session = array(
 				'status' => true,
-				'data'	 => array(
-					'id' => $login['data'][0]['user_id'],
-					'nama' => $login['data'][0]['user_nama'],
-					'email' => $login['data'][0]['user_email'],
-					'level' => $login['data'][0]['lev_nama'],
-				)
+				'data'	 => array
+								(
+									'id' => $login['data'][0]['user_id'],
+									'nama' => $login['data'][0]['user_nama'],
+									'email' => $login['data'][0]['user_email'], 
+									'level' => $login['data'][0]['lev_nama'],
+								)
 			);
 
 			$this->session->set_userdata($session);
-
+			
 			$this->output_json(['status' => 0]);
-		} else if ($login['status'] == 1) {
+		}
+		else if($login['status'] == 1) 
+		{
 			$this->output_json(['status' => 1]);
-		} else {
+		}
+		else
+		{
 			$this->output_json(['status' => 2]);
 		}
 	}
@@ -51,8 +56,8 @@ class Login extends Render_Controller
 
 	public function logout()
 	{
-		$session = array('status', 'data');
-
+		$session = array('status','data');
+		
 		$this->session->unset_userdata($session);
 
 		redirect('login', 'refresh');
@@ -67,6 +72,7 @@ class Login extends Render_Controller
 		$this->load->library('plugin');
 		$this->load->helper('url');
 	}
+
 }
 
 /* End of file Login.php */

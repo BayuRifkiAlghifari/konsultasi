@@ -1,8 +1,7 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class DataModel extends Render_Model
-{
+class DataModel extends Render_Model {
 
 
 	public function getPenyakit()
@@ -13,9 +12,9 @@ class DataModel extends Render_Model
 	}
 
 
-	public function getGejala()
+	public function getGejala($q)
 	{
-		$exe 						= $this->db->get('gejala');
+		$exe 						= $this->db->get_where('gejala', ['id_penyakit' => $q]);
 
 		return $exe->result_array();
 	}
@@ -71,50 +70,37 @@ class DataModel extends Render_Model
 
 	public function cek_diagnosa($q)
 	{
-		// Array Penyakit
-		$hasil 						= array();
-
-		// Get Data Diagnosa Detail
-		$diagnosa 					= $this->db->select('sum(nilai) as score, id_penyakit as penyakit')
-												->where('id_diagnosa', $q)
-												->group_by('id_penyakit')
-												->order_by('score', 'desc')
-												->get('diagnosa_detail')
-												->result_array();
-
-
-		// Cek Diagnosa per penyakit
-		foreach($diagnosa as $r)
-		{
-			// Get Data Penyakit
-			$penyakit 				= $this->db->get_where('penyakit', ['id_penyakit' => $r['penyakit']])->row_array();
-											
-			// Cek minimal diagnosa
-			if ((int)$r['score']  >= (int)$penyakit['min_persentase'] || (int)$penyakit['max_persentase'] <= (int)$r['score']) 
-			{
-				$data['penyakit'] 	= $penyakit['nama'];
-				$data['status'] 	= 1;
-				$data['data'] 		= $this->db->select('users.*, saran.*, penyakit.nama as penyakit')
-												->join('users', 'users.user_id = saran.id_user')
-												->join('penyakit', 'penyakit.id_penyakit = saran.id_penyakit')
+		$diagnosa 					= $this->db->select('diagnosa.score as score, diagnosa_detail.id_penyakit as penyakit')
+												->join('diagnosa_detail', 'diagnosa_detail.id_diagnosa = diagnosa.id_diagnosa', 'left')
 												->limit(1)
-												->get_where('saran', ['saran.id_penyakit' => $r['penyakit']])
+												->get_where('diagnosa', ['diagnosa.id_diagnosa' => $q])
 												->row_array();
 
-				array_push($hasil, $data);
-			} 
-			else 
-			{
-				$data['penyakit'] 	= $penyakit['nama'];
-				$data['status'] 	= 0;
-				$data['data'] 		= null;
-			
-				array_push($hasil, $data);
-			}
+		$penyakit 					= $this->db->get_where('penyakit', ['id_penyakit' => $diagnosa['penyakit']])->row_array();
+
+		// Cek minimal diagnosa
+		if($diagnosa['score']  >= $penyakit['min_persentase'] || $diagnosa['score'] <= $penyakit['max_persentase'])
+		{
+			$return['status'] 	= 1;
+			$return['data'] 	= $this->db->select('users.*, saran.*, penyakit.nama as penyakit')
+											->join('users', 'users.user_id = saran.id_user')
+											->join('penyakit', 'penyakit.id_penyakit = saran.id_penyakit')
+											->limit(1)
+											->get_where('saran', ['saran.id_penyakit' => $diagnosa['penyakit']])
+											->row_array();
+
+			return $return;
 		}
-		
-		return $hasil;
+		else
+		{
+			$return['status'] 	= 0;
+			$return['data'] 	= null;
+
+			return $return;
+		}
 	}
+
+
 }
 
 /* End of file DataModel.php */
