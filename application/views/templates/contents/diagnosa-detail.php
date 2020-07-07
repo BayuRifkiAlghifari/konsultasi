@@ -43,23 +43,25 @@
 							<div class="row">
 								
 				            	<?php foreach($hasil as $r) : ?>
-							        <div class="col-xs-12 col-sm-12 col-md-12">
-							            <div class="panel panel-success pricing-big">
-							            	<h2 class="text-uppercase"><i class="fa fa-ambulance"></i> PENYAKIT <?= $r['penyakit'] ?> </h2>
-							            	
-						            		<!-- CEK HASIL -->
-						            		<h3>HASIL : <?= ($r['status'] > 0) ? '<button class="btn btn-success">POSITIF </button></h3>' : '<button class="btn btn-danger">NEGATIVE </button></h3>' ?>
+				            		<?php if($r['data'] != null) : ?>
+								        <div class="col-xs-12 col-sm-12 col-md-12">
+								            <div class="panel panel-success pricing-big">
+								            	<h2 class="text-uppercase"><i class="fa fa-ambulance"></i> PENYAKIT <?= $r['penyakit'] ?> </h2>
+								            	
+							            		<!-- CEK HASIL -->
+							            		<h3>HASIL : <?= ($r['status'] > 0) ? '<button class="btn btn-success">POSITIF </button></h3>' : '<button class="btn btn-danger">NEGATIVE </button></h3>' ?>
 
-						            		<!-- CEK SARAN -->
-						            		<?php if($r['data'] != null) : ?>
-							            		<h3><?= $r['data']['judul'] ?></h3>
-							            		<p><?= $r['data']['keterangan'] ?></p>
-						            		<?php else : ?>
-							            		<h3>Sepertinya anda terhindar dari penyakit laknat ini</h3>
-							            	<?php endif; ?>
-							            	<!-- CEK SARAN -->
-							            </div>
-							        </div>	    	
+							            		<!-- CEK SARAN -->
+							            		<?php if($r['data'] != null) : ?>
+								            		<h3><?= $r['data']['judul'] ?></h3>
+								            		<p><?= $r['data']['keterangan'] ?></p>
+							            		<?php else : ?>
+								            		<h3>Sepertinya anda terhindar dari penyakit laknat ini</h3>
+								            	<?php endif; ?>
+								            	<!-- CEK SARAN -->
+								            </div>
+								        </div>	
+						            <?php endif; ?>
 				            	<?php endforeach ?>
 				
 				    		</div>
