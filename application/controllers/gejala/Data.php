@@ -1,8 +1,7 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Data extends Render_Controller
-{
+class Data extends Render_Controller {
 
 
 	public function index()
@@ -37,13 +36,12 @@ class Data extends Render_Controller
 		$exe 							= $this->gejala->getDataDetail($id);
 
 		$this->output_json(
-			[
-				'id' 			=> $exe['id_gejala'],
-				'penyakit' 		=> $exe['id_penyakit'],
-				'nama' 			=> $exe['nama'],
-				'nilai' 		=> $exe['nilai'],
-			]
-		);
+		[
+			'id' 			=> $exe['id_gejala'],
+			'penyakit' 		=> $exe['id_penyakit'],
+			'nama' 			=> $exe['nama'],
+			'nilai' 		=> $exe['nilai'],
+		]);
 	}
 
 
@@ -57,14 +55,13 @@ class Data extends Render_Controller
 		$exe 							= $this->gejala->insert($penyakit, $nama, $nilai);
 
 		$this->output_json(
-			[
-				'id' 			=> $exe['id'],
-				'code' 			=> $exe['code'],
-				'penyakit' 		=> $exe['penyakit'],
-				'nama' 			=> $nama,
-				'nilai' 		=> $nilai,
-			]
-		);
+		[
+			'id' 			=> $exe['id'],
+			'code' 			=> $exe['code'],
+			'penyakit' 		=> $exe['penyakit'],
+			'nama' 			=> $nama,
+			'nilai' 		=> $nilai,
+		]);
 	}
 
 
@@ -79,14 +76,13 @@ class Data extends Render_Controller
 		$exe 							= $this->gejala->update($id, $penyakit, $nama, $nilai);
 
 		$this->output_json(
-			[
-				'id' 			=> $id,
-				'code' 			=> $exe['code'],
-				'penyakit' 		=> $exe['penyakit'],
-				'nama' 			=> $nama,
-				'nilai' 		=> $nilai,
-			]
-		);
+		[
+			'id' 			=> $id,
+			'code' 			=> $exe['code'],
+			'penyakit' 		=> $exe['penyakit'],
+			'nama' 			=> $nama,
+			'nilai' 		=> $nilai,
+		]);
 	}
 
 
@@ -98,10 +94,9 @@ class Data extends Render_Controller
 		$exe 							= $this->gejala->delete($id);
 
 		$this->output_json(
-			[
-				'id' 			=> $id
-			]
-		);
+		[
+			'id' 			=> $id
+		]);
 	}
 
 
@@ -116,6 +111,8 @@ class Data extends Render_Controller
 		// Cek session
 		$this->sesion->cek_session();
 	}
+
+
 }
 
 /* End of file Data.php */
