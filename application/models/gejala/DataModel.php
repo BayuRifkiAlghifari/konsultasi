@@ -1,9 +1,10 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class DataModel extends Render_Model {
+class DataModel extends Render_Model
+{
 
-	
+
 	public function getAllData()
 	{
 		$exe 						= $this->db->select('gejala.*, penyakit.nama as penyakit')
@@ -79,8 +80,6 @@ class DataModel extends Render_Model {
 
 		return $exe;
 	}
-
-
 }
 
 /* End of file DataModel.php */

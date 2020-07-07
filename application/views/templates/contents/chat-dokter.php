@@ -68,19 +68,19 @@
 						                <!-- / FILTER PENYAKIT -->
 
 						                <?php if(isset($list_pasien)) : ?>
-						                	<?php foreach($list_pasien as $l) : ?>
-						                		<br>
-								                <hr>
-						                		<div class="text-center">
-									            	<h2><i class="fa fa-users"></i> LIST CHAT PASIEN</h2>
-								            	</div>
-						                		<div class="row">
+					                		<br>
+							                <hr>
+					                		<div class="text-center">
+								            	<h2><i class="fa fa-users"></i> LIST CHAT PASIEN</h2>
+							            	</div>
+					                		<div class="row">
+							                	<?php foreach($list_pasien as $l) : ?>
 						                			<div class="col-xs-4 col-sm-3 col-md-3 text-center">
 						                				<h2><i class="fa fa-user fa-lg"></i></h2>
 							                			<a href="<?= base_url() ?>chat/start_dokter?pasien=<?= $l['user_id'] ?>"><?= $l['user_nama'] ?></a>
 						                			</div>
-						                		</div>
-						                	<?php endforeach; ?>
+							                	<?php endforeach; ?>
+					                		</div>
 						                <?php endif; ?>
 
 						                <!-- BAGIAN GEJALA -->
