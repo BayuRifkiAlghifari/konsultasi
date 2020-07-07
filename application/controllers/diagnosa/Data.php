@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Data extends Render_Controller {
+class Data extends Render_Controller
+{
 
 
 	public function index()
@@ -19,14 +20,7 @@ class Data extends Render_Controller {
 		$this->breadcrumb_2_url 		= '#';
 
 		// Send data to view
-		$this->data['penyakit'] 		= $this->diagnosa->getPenyakit();
-
-		$q 								= $this->input->get('penyakit');
-		if($q != null)
-		{
-			$this->data['gejala'] 		= $this->diagnosa->getGejala($q);
-			$this->data['psakit'] 		= $q;
-		}
+		$this->data['gejala'] 			= $this->diagnosa->getGejala();
 
 		$this->render();
 	}
@@ -39,18 +33,18 @@ class Data extends Render_Controller {
 
 		$exedi 							= $this->diagnosa->insert_diagnosa();
 
-		for($i=1; $i <= count($hittung); $i++)
+		for ($i = 1; $i <= count($hittung); $i++) 
 		{
-			$id 							= $this->input->post('id-'.$i);
-			$penyakit 						= $this->input->post('penyakit');
-			$optradio 						= $this->input->post('optradio-'.$i);
+			$id 						= $this->input->post('id-' . $i);
+			$penyakit 					= $this->input->post('penyakit-'. $i);
+			$optradio 					= $this->input->post('optradio-' . $i);
 
-			$exede 							= $this->diagnosa->insert_diagnosa_detail($id, $optradio, $exedi, $penyakit);
+			$exede 						= $this->diagnosa->insert_diagnosa_detail($id, $optradio, $exedi, $penyakit);
 		}
-		
+
 		$exeup 							= $this->diagnosa->update_diagnosa($exedi);
 
-		redirect('diagnosa/data/hasil?diagnosa='.$exedi,'refresh');
+		redirect('diagnosa/data/hasil?diagnosa=' . $exedi, 'refresh');
 	}
 
 
@@ -76,8 +70,7 @@ class Data extends Render_Controller {
 		$this->breadcrumb_3_url 		= base_url() . 'diagnosa/data/hasil?diagnosa=' . $q;
 
 		// Send data to view
-		$this->data['hasil'] 			= $cek['data'];
-		$this->data['status'] 			= $cek['status'];
+		$this->data['hasil'] 			= $cek;
 
 		$this->render();
 	}
@@ -94,8 +87,6 @@ class Data extends Render_Controller {
 		// Cek session
 		$this->sesion->cek_session();
 	}
-
-
 }
 
 /* End of file Data.php */
